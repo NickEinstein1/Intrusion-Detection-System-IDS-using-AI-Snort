@@ -1,0 +1,20 @@
+# Ignore virtual environment folder
+venv/
+env/
+pyvenv/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore specific folders
+Include/
+Program/
+Scripts/
+Lib/
+Data/
+
+# Ignore pickle  files
+.pkl
+
+# Ignore csv files
+.csv
