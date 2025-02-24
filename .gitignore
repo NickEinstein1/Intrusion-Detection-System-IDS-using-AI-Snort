@@ -17,6 +17,6 @@ Data/
 .pkl
 
 # Ignore csv files
-test_processed.csv/
 train_processed.csv/
+test_processed.csv/
 
