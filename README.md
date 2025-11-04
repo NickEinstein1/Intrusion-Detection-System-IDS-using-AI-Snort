@@ -1,5 +1,7 @@
 # Intrusion Detection System (IDS) using AI & Snort
 
+![Intrusion Detection System](docs/Intrusion_detection.jpg)
+
 An AI-powered Intrusion Detection System that uses machine learning to detect network intrusions and attacks. This project implements a Random Forest classifier trained on the UNSW-NB15 dataset to identify malicious network traffic with high accuracy.
 
 ## Overview
