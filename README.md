@@ -6,7 +6,7 @@ An AI-powered Intrusion Detection System that uses machine learning to detect ne
 
 This project demonstrates the application of machine learning techniques for cybersecurity, specifically for detecting network intrusions. The system achieves **90% accuracy** in distinguishing between normal and malicious network traffic.
 
-## ✨ Features
+## Features
 
 - **Machine Learning-Based Detection**: Uses Random Forest classifier for robust intrusion detection
 - **High Accuracy**: Achieves 90% accuracy on the UNSW-NB15 test dataset
@@ -26,7 +26,7 @@ The project uses the **UNSW-NB15 dataset**, which contains:
   - Time-based features (rate, sload, dload)
   - And many more network-specific attributes
 
-##  Technologies Used
+## Technologies Used
 
 - **Python 3.13**
 - **pandas**: Data manipulation and analysis
@@ -69,7 +69,7 @@ Or install individually:
 pip install pandas scikit-learn numpy matplotlib seaborn
 ```
 
-## 📖 Usage
+## Usage
 
 ### Training the Model
 
@@ -144,7 +144,7 @@ Intrusion-Detection-System-IDS-using-AI-Snort/
 └── .gitattributes                         # Git LFS configuration
 ```
 
-##  Workflow
+## Workflow
 
 1. **Data Preprocessing**
    - Load UNSW-NB15 training and testing datasets
@@ -166,7 +166,7 @@ Intrusion-Detection-System-IDS-using-AI-Snort/
    - Export trained model using joblib
    - Model ready for integration with network monitoring systems
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -176,7 +176,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License 
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -184,7 +184,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Nick**
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - UNSW-NB15 dataset creators for providing a comprehensive modern network traffic dataset
 - scikit-learn community for excellent machine learning tools
@@ -259,7 +259,7 @@ The feature importance analysis reveals:
 - Correlations between important features
 - Opportunities for feature engineering and model optimization
 
-📖 **For detailed instructions, see [FEATURE_IMPORTANCE_GUIDE.md](FEATURE_IMPORTANCE_GUIDE.md)**
+**For detailed instructions, see [FEATURE_IMPORTANCE_GUIDE.md](FEATURE_IMPORTANCE_GUIDE.md)**
 
 ## Future Enhancements
 
@@ -279,4 +279,3 @@ For questions or feedback, please open an issue in the GitHub repository.
 ---
 
 **Note**: This project is for educational and research purposes. Always ensure proper authorization before deploying intrusion detection systems on any network.
-
