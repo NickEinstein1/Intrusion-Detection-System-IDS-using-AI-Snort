@@ -41,6 +41,8 @@ pandas
 scikit-learn
 numpy
 joblib
+matplotlib
+seaborn
 ```
 
 ## Installation
@@ -59,7 +61,12 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. Install required packages:
 ```bash
-pip install pandas scikit-learn numpy
+pip install -r requirements.txt
+```
+
+Or install individually:
+```bash
+pip install pandas scikit-learn numpy matplotlib seaborn
 ```
 
 ## 📖 Usage
@@ -122,13 +129,19 @@ The Random Forest classifier achieves the following performance metrics:
 
 ```
 Intrusion-Detection-System-IDS-using-AI-Snort/
-├── Intrusion_Detection_System(IDS).ipynb  # Main Jupyter notebook
-├── intrusion_detection_model_unsw.pkl     # Trained model (saved)
-├── LICENSE                                 # MIT License
+├── Intrusion_Detection_System(IDS).ipynb  # Main Jupyter notebook with training & analysis
+├── feature_importance_analysis.py         # Standalone script for feature analysis
+├── test_setup.py                          # Setup verification script
+├── intrusion_detection_model_unsw.pkl     # Trained Random Forest model
+├── feature_importance_full.csv            # Complete feature importance rankings
+├── requirements.txt                       # Python package dependencies
+├── *.png                                  # Generated visualization charts
+├── README.md                              # This file
+├── FEATURE_IMPORTANCE_GUIDE.md            # Detailed guide for feature analysis
+├── LICENSE                                # MIT License
 ├── pyvenv.cfg                             # Virtual environment config
 ├── .gitignore                             # Git ignore rules
-├── .gitattributes                         # Git LFS configuration
-└── README.md                              # This file
+└── .gitattributes                         # Git LFS configuration
 ```
 
 ##  Workflow
@@ -177,13 +190,54 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - scikit-learn community for excellent machine learning tools
 - Open-source community for continuous support and inspiration
 
+## Feature Importance Analysis
+
+Understanding which network features are most critical for detecting intrusions helps optimize the model and provides insights into attack patterns.
+
+### Quick Start
+
+**Verify Setup:**
+```bash
+python3 test_setup.py
+```
+
+**Run Analysis:**
+```bash
+# Option 1: Python Script
+python3 feature_importance_analysis.py
+
+# Option 2: Jupyter Notebook
+jupyter notebook Intrusion_Detection_System(IDS).ipynb
+# Navigate to the "Feature Importance Analysis" section
+```
+
+### Generated Outputs
+
+The analysis generates the following visualizations and data:
+
+1. **feature_importance_top20.png** - Horizontal bar chart showing the 20 most important features
+2. **feature_importance_top15_vertical.png** - Vertical bar chart with importance scores
+3. **cumulative_feature_importance.png** - Shows how many features are needed to capture 90%/95% of predictive power
+4. **top10_features_correlation.png** - Correlation heatmap of the top 10 features
+5. **feature_importance_full.csv** - Complete ranking of all features with importance scores
+
+### Key Insights
+
+The feature importance analysis reveals:
+- Which network traffic characteristics are most indicative of attacks
+- How many features are truly necessary for accurate detection
+- Correlations between important features
+- Opportunities for feature engineering and model optimization
+
+📖 **For detailed instructions, see [FEATURE_IMPORTANCE_GUIDE.md](FEATURE_IMPORTANCE_GUIDE.md)**
+
 ## Future Enhancements
 
+- [x] Feature importance analysis and visualization
 - [ ] Integration with Snort IDS for real-time detection
 - [ ] Multi-class classification for specific attack types
 - [ ] Deep learning models (LSTM, CNN) for improved accuracy
 - [ ] Real-time network traffic monitoring dashboard
-- [ ] Feature importance analysis and visualization
 - [ ] Cross-validation and hyperparameter tuning
 - [ ] Deployment as a REST API service
 - [ ] Docker containerization for easy deployment
