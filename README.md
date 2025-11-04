@@ -213,13 +213,43 @@ jupyter notebook Intrusion_Detection_System(IDS).ipynb
 
 ### Generated Outputs
 
-The analysis generates the following visualizations and data:
+#### Visualizations
 
-1. **feature_importance_top20.png** - Horizontal bar chart showing the 20 most important features
-2. **feature_importance_top15_vertical.png** - Vertical bar chart with importance scores
-3. **cumulative_feature_importance.png** - Shows how many features are needed to capture 90%/95% of predictive power
-4. **top10_features_correlation.png** - Correlation heatmap of the top 10 features
-5. **feature_importance_full.csv** - Complete ranking of all features with importance scores
+1. **feature_importance_top20.png**
+   - Horizontal bar chart of the 20 most important features
+   - Easy to read and compare feature importance scores
+   - Best for presentations and reports
+
+   ![Top 20 Features](feature_importance_top20.png)
+
+2. **feature_importance_top15_vertical.png**
+   - Vertical bar chart with exact importance values
+   - Shows the top 15 features with numerical labels
+   - Useful for detailed analysis
+
+   ![Top 15 Features Vertical](feature_importance_top15_vertical.png)
+
+3. **cumulative_feature_importance.png**
+   - Line plot showing cumulative importance
+   - Indicates how many features capture 90% and 95% of predictive power
+   - Helps determine optimal feature subset size
+
+   ![Cumulative Importance](cumulative_feature_importance.png)
+
+4. **top10_features_correlation.png**
+   - Heatmap showing correlations between top 10 features
+   - Identifies redundant or complementary features
+   - Useful for feature engineering
+
+   ![Correlation Heatmap](top10_features_correlation.png)
+
+#### Data Files
+
+1. **feature_importance_full.csv**
+   - Complete ranking of all features with importance scores
+   - Two columns: Feature name and Importance score
+   - Sorted by importance (highest to lowest)
+   - Can be used for further analysis in Excel or other tools
 
 ### Key Insights
 
