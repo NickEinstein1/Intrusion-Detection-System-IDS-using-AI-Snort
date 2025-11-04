@@ -17,6 +17,9 @@ Data/
 .pkl
 
 # Ignore csv files
-train_processed.csv/
-test_processed.csv/
+train_processed.csv
+test_processed.csv
+feature_importance_full.csv
 
+# Ignore generated visualization files
+*.png
