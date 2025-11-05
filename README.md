@@ -133,13 +133,21 @@ The Random Forest classifier achieves the following performance metrics:
 Intrusion-Detection-System-IDS-using-AI-Snort/
 ├── Intrusion_Detection_System(IDS).ipynb  # Main Jupyter notebook with training & analysis
 ├── feature_importance_analysis.py         # Standalone script for feature analysis
+├── model_optimization.py                  # Cross-validation and hyperparameter tuning
+├── model_optimization_visualizations.py   # Optimization results visualizations
 ├── test_setup.py                          # Setup verification script
-├── intrusion_detection_model_unsw.pkl     # Trained Random Forest model
+├── intrusion_detection_model_unsw.pkl     # Trained baseline Random Forest model
+├── intrusion_detection_model_optimized.pkl # Optimized model (generated)
 ├── feature_importance_full.csv            # Complete feature importance rankings
+├── optimization_results.csv               # Model optimization metrics (generated)
+├── best_hyperparameters.csv               # Optimal hyperparameters (generated)
 ├── requirements.txt                       # Python package dependencies
 ├── *.png                                  # Generated visualization charts
+├── docs/                                  # Documentation and images
+│   └── Intrusion_detection.jpg            # Project diagram
 ├── README.md                              # This file
 ├── FEATURE_IMPORTANCE_GUIDE.md            # Detailed guide for feature analysis
+├── MODEL_OPTIMIZATION_GUIDE.md            # Detailed guide for model optimization
 ├── LICENSE                                # MIT License
 ├── pyvenv.cfg                             # Virtual environment config
 ├── .gitignore                             # Git ignore rules
@@ -255,14 +263,91 @@ The feature importance analysis reveals:
 
 **For detailed instructions, see [FEATURE_IMPORTANCE_GUIDE.md](FEATURE_IMPORTANCE_GUIDE.md)**
 
+## Model Optimization
+
+Improve model performance through cross-validation and hyperparameter tuning.
+
+### Quick Start
+
+**Run Optimization:**
+```bash
+# Step 1: Perform cross-validation and hyperparameter tuning
+python3 model_optimization.py
+
+# Step 2: Generate comparison visualizations
+python3 model_optimization_visualizations.py
+```
+
+### What It Does
+
+1. **K-Fold Cross-Validation**
+   - Evaluates model stability across 5 different data splits
+   - Provides mean accuracy with confidence intervals
+   - Identifies overfitting or underfitting issues
+
+2. **Grid Search Hyperparameter Tuning**
+   - Tests multiple parameter combinations
+   - Finds optimal settings for:
+     - Number of trees (`n_estimators`)
+     - Tree depth (`max_depth`)
+     - Split criteria (`min_samples_split`, `min_samples_leaf`)
+     - Feature selection (`max_features`)
+     - Bootstrap sampling (`bootstrap`)
+
+3. **Performance Comparison**
+   - Compares baseline vs optimized model
+   - Calculates improvement percentages
+   - Generates detailed visualizations
+
+### Generated Outputs
+
+#### Optimized Model
+- **intrusion_detection_model_optimized.pkl** - Tuned Random Forest model with best parameters
+
+#### Performance Data
+- **optimization_results.csv** - Detailed metrics comparison (accuracy, precision, recall, F1, ROC-AUC)
+- **best_hyperparameters.csv** - Optimal parameter values found by GridSearch
+
+#### Visualizations
+
+1. **optimization_metrics_comparison.png**
+   - Side-by-side bar chart comparing all metrics
+   - Shows baseline vs optimized performance
+
+2. **optimization_improvement.png**
+   - Horizontal bar chart showing percentage improvements
+   - Highlights which metrics improved most
+
+3. **optimization_confusion_matrices.png**
+   - Confusion matrices for both models
+   - Visual comparison of prediction accuracy
+
+4. **optimization_roc_curves.png**
+   - ROC curves with AUC scores
+   - Demonstrates improved classification ability
+
+5. **optimization_learning_curves.png**
+   - Training vs validation scores across dataset sizes
+   - Identifies overfitting/underfitting patterns
+
+### Key Benefits
+
+- **Better Accuracy**: Optimized hyperparameters improve detection rates
+- **Reduced False Positives**: Better precision means fewer false alarms
+- **Model Stability**: Cross-validation ensures consistent performance
+- **Data-Driven Decisions**: Systematic parameter search vs manual tuning
+- **Production Ready**: Validated model ready for deployment
+
+**For detailed instructions, see [MODEL_OPTIMIZATION_GUIDE.md](MODEL_OPTIMIZATION_GUIDE.md)**
+
 ## Future Enhancements
 
 - [x] Feature importance analysis and visualization
+- [x] Cross-validation and hyperparameter tuning
 - [ ] Integration with Snort IDS for real-time detection
 - [ ] Multi-class classification for specific attack types
 - [ ] Deep learning models (LSTM, CNN) for improved accuracy
 - [ ] Real-time network traffic monitoring dashboard
-- [ ] Cross-validation and hyperparameter tuning
 - [ ] Deployment as a REST API service
 - [ ] Docker containerization for easy deployment
 
