@@ -20,6 +20,11 @@ Data/
 train_processed.csv
 test_processed.csv
 feature_importance_full.csv
+optimization_results.csv
+best_hyperparameters.csv
+
+# Ignore optimized model
+intrusion_detection_model_optimized.pkl
 
 # Ignore generated visualization files
 *.png
