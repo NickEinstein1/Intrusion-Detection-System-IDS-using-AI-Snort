@@ -135,12 +135,18 @@ Intrusion-Detection-System-IDS-using-AI-Snort/
 ├── feature_importance_analysis.py         # Standalone script for feature analysis
 ├── model_optimization.py                  # Cross-validation and hyperparameter tuning
 ├── model_optimization_visualizations.py   # Optimization results visualizations
+├── multiclass_data_exploration.py         # Multi-class attack distribution analysis
+├── multiclass_classification.py           # Multi-class classifier training
+├── multiclass_visualizations.py           # Multi-class results visualizations
 ├── test_setup.py                          # Setup verification script
-├── intrusion_detection_model_unsw.pkl     # Trained baseline Random Forest model
-├── intrusion_detection_model_optimized.pkl # Optimized model (generated)
+├── intrusion_detection_model_unsw.pkl     # Trained baseline Random Forest model (binary)
+├── intrusion_detection_model_optimized.pkl # Optimized binary model (generated)
+├── intrusion_detection_model_multiclass.pkl # Multi-class model (generated)
+├── attack_category_encoder.pkl            # Attack category label encoder (generated)
 ├── feature_importance_full.csv            # Complete feature importance rankings
 ├── optimization_results.csv               # Model optimization metrics (generated)
 ├── best_hyperparameters.csv               # Optimal hyperparameters (generated)
+├── multiclass_*.csv                       # Multi-class results and metrics (generated)
 ├── requirements.txt                       # Python package dependencies
 ├── *.png                                  # Generated visualization charts
 ├── docs/                                  # Documentation and images
@@ -148,6 +154,7 @@ Intrusion-Detection-System-IDS-using-AI-Snort/
 ├── README.md                              # This file
 ├── FEATURE_IMPORTANCE_GUIDE.md            # Detailed guide for feature analysis
 ├── MODEL_OPTIMIZATION_GUIDE.md            # Detailed guide for model optimization
+├── MULTICLASS_CLASSIFICATION_GUIDE.md     # Detailed guide for multi-class classification
 ├── LICENSE                                # MIT License
 ├── pyvenv.cfg                             # Virtual environment config
 ├── .gitignore                             # Git ignore rules
@@ -340,12 +347,145 @@ python3 model_optimization_visualizations.py
 
 **For detailed instructions, see [MODEL_OPTIMIZATION_GUIDE.md](MODEL_OPTIMIZATION_GUIDE.md)**
 
+## Multi-class Classification
+
+Identify specific attack types instead of just binary (normal vs attack) classification.
+
+### Attack Categories (10 Classes)
+
+The UNSW-NB15 dataset contains the following attack types:
+1. **Normal** - Legitimate network traffic
+2. **Fuzzers** - Attempts to cause program/network suspension by feeding randomly generated data
+3. **Analysis** - Port scanning, spam, and HTML file penetrations
+4. **Backdoors** - Techniques to bypass normal authentication
+5. **DoS** - Denial of Service attacks
+6. **Exploits** - Known exploits against vulnerable services
+7. **Generic** - Techniques that work against all block ciphers
+8. **Reconnaissance** - Surveillance and probing attacks
+9. **Shellcode** - Exploits that execute shell commands
+10. **Worms** - Self-replicating malware
+
+### Quick Start
+
+**Explore Attack Distribution:**
+```bash
+python3 multiclass_data_exploration.py
+```
+
+**Train Multi-class Model:**
+```bash
+# Step 1: Train the multi-class classifier
+python3 multiclass_classification.py
+
+# Step 2: Generate visualizations
+python3 multiclass_visualizations.py
+```
+
+### What It Does
+
+1. **Data Preprocessing**
+   - Keeps `attack_cat` column (instead of dropping it)
+   - Encodes attack categories into numeric labels
+   - Handles class imbalance with balanced weights
+   - Normalizes features for better performance
+
+2. **Multi-class Training**
+   - Random Forest with `class_weight='balanced'`
+   - Handles imbalanced classes automatically
+   - Optimized hyperparameters from previous tuning
+   - Saves attack category encoder for predictions
+
+3. **Comprehensive Evaluation**
+   - Per-class precision, recall, and F1-score
+   - Confusion matrix showing all 10 classes
+   - Overall and per-class accuracy
+   - Detailed classification report
+
+### Generated Outputs
+
+#### Models and Encoders
+- **intrusion_detection_model_multiclass.pkl** - Trained multi-class Random Forest
+- **attack_category_encoder.pkl** - Label encoder for attack categories
+
+#### Data Files
+- **train_multiclass_processed.csv** - Preprocessed training data with attack categories
+- **test_multiclass_processed.csv** - Preprocessed test data with attack categories
+- **multiclass_classification_report.csv** - Detailed per-class metrics
+- **multiclass_confusion_matrix.csv** - Confusion matrix in CSV format
+- **multiclass_feature_names.csv** - List of features used
+- **multiclass_feature_importance.csv** - Feature importance rankings
+
+#### Visualizations
+
+1. **multiclass_confusion_matrix_heatmap.png**
+   - 10x10 heatmap showing prediction patterns
+   - Identifies which attack types are confused with each other
+   - Absolute counts for each class combination
+
+2. **multiclass_confusion_matrix_normalized.png**
+   - Normalized confusion matrix (by true labels)
+   - Shows proportion of correct/incorrect predictions
+   - Easier to compare classes with different sample sizes
+
+3. **multiclass_per_class_metrics.png**
+   - Grouped bar chart for all classes
+   - Compares precision, recall, and F1-score
+   - Identifies which attack types are hardest to detect
+
+4. **multiclass_f1_scores.png**
+   - Horizontal bar chart sorted by F1-score
+   - Color-coded: green (good), orange (fair), red (poor)
+   - Quick identification of problematic classes
+
+5. **multiclass_distribution_accuracy.png**
+   - Two-panel chart showing:
+     - Top: Number of samples per class
+     - Bottom: Accuracy per class
+   - Reveals relationship between class size and performance
+
+6. **multiclass_feature_importance.png**
+   - Top 20 most important features for multi-class classification
+   - May differ from binary classification features
+   - Helps understand what distinguishes attack types
+
+### Key Benefits
+
+- **Actionable Intelligence**: Know exactly what type of attack is happening
+- **Better Response**: Different attacks require different countermeasures
+- **Detailed Analysis**: Understand attack patterns and trends
+- **Security Insights**: Identify which attacks are most common
+- **Improved Detection**: Specialized detection for each attack type
+
+### Use Cases
+
+1. **Security Operations Center (SOC)**
+   - Prioritize alerts based on attack type
+   - Route incidents to appropriate teams
+   - Generate attack type statistics
+
+2. **Threat Intelligence**
+   - Track attack type trends over time
+   - Identify emerging attack patterns
+   - Correlate with external threat feeds
+
+3. **Incident Response**
+   - Faster response with specific attack identification
+   - Appropriate mitigation strategies per attack type
+   - Better forensic analysis
+
+4. **Compliance and Reporting**
+   - Detailed attack type breakdowns
+   - Regulatory compliance reporting
+   - Security posture assessment
+
+**For detailed instructions, see [MULTICLASS_CLASSIFICATION_GUIDE.md](MULTICLASS_CLASSIFICATION_GUIDE.md)**
+
 ## Future Enhancements
 
 - [x] Feature importance analysis and visualization
 - [x] Cross-validation and hyperparameter tuning
+- [x] Multi-class classification for specific attack types
 - [ ] Integration with Snort IDS for real-time detection
-- [ ] Multi-class classification for specific attack types
 - [ ] Deep learning models (LSTM, CNN) for improved accuracy
 - [ ] Real-time network traffic monitoring dashboard
 - [ ] Deployment as a REST API service
