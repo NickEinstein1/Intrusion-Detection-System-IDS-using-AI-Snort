@@ -1,5 +1,5 @@
 """
-Visualization Script for Model Optimization Results
+Visualization Script for Model Optimization Results where we analyze the results of the model optimization process.
 Generates comparison charts between baseline and optimized models.
 """
 
