@@ -22,9 +22,20 @@ test_processed.csv
 feature_importance_full.csv
 optimization_results.csv
 best_hyperparameters.csv
+train_multiclass_processed.csv
+test_multiclass_processed.csv
+multiclass_attack_summary.csv
+multiclass_classification_report.csv
+multiclass_confusion_matrix.csv
+multiclass_feature_names.csv
+multiclass_feature_importance.csv
 
 # Ignore optimized model
 intrusion_detection_model_optimized.pkl
+
+# Ignore multi-class models
+intrusion_detection_model_multiclass.pkl
+attack_category_encoder.pkl
 
 # Ignore generated visualization files
 *.png
